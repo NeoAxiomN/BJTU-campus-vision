@@ -1,0 +1,51 @@
+paths:
+  raw_root: data/raw
+  processed_root: data/processed
+  output_root: outputs
+runtime:
+  seed: 2026
+  num_workers: 0
+  image_size: 224
+dataset:
+  name: BJTU2026
+  raw_dir: BJTU2026
+  archive_path: /home/junyi/BJTU2026dataset.zip
+  landmarks:
+    - fhy
+    - jx
+    - kx
+    - mh
+    - nm
+    - sjz
+    - sy
+    - tsg
+    - ty
+    - yf
+    - yk
+    - zx
+  mini:
+    base_per_class: 20
+    query_per_class: 5
+    negative_count: 240
+    detection_per_class: 20
+retrieval:
+  backbone_name: vit_base_patch14_dinov2.lvd142m
+  embedding_dim: 768
+  train_adapter: false
+  batch_size: 8
+  epochs: 2
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  topk: 10
+index:
+  backend: sklearn
+detector:
+  image_size: 320
+  batch_size: 2
+  epochs: 2
+  learning_rate: 0.005
+  momentum: 0.9
+  weight_decay: 0.0005
+  score_threshold: 0.35
+output:
+  demo_queries_per_class: 2

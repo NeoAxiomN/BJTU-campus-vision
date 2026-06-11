@@ -1,0 +1,87 @@
+name: Update README TOC
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - README.md
+      - .github/workflows/update-readme-toc.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme-toc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update README table of contents
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          readme_path = Path("README.md")
+          text = readme_path.read_text(encoding="utf-8")
+          start_marker = "<!-- toc:start -->"
+          end_marker = "<!-- toc:end -->"
+
+          heading_pattern = re.compile(r"^(#{2,3})\s+(.+?)\s*$", re.MULTILINE)
+          seen: dict[str, int] = {}
+          toc_lines: list[str] = []
+
+          def slugify(title: str) -> str:
+              clean = re.sub(r"<[^>]+>", "", title)
+              clean = clean.replace("`", "")
+              clean = re.sub(r"[^\w\u4e00-\u9fff -]", "", clean, flags=re.UNICODE)
+              clean = re.sub(r"\s+", "-", clean.strip().lower())
+              base = clean
+              count = seen.get(base, 0)
+              seen[base] = count + 1
+              if count:
+                  return f"{base}-{count}"
+              return base
+
+          for match in heading_pattern.finditer(text):
+              level = len(match.group(1))
+              title = match.group(2).strip()
+              if title == "目录":
+                  continue
+              indent = "  " if level == 3 else ""
+              toc_lines.append(f"{indent}- [{title}](#{slugify(title)})")
+
+          toc = "\n".join(toc_lines)
+          replacement = f"{start_marker}\n{toc}\n{end_marker}"
+
+          if start_marker in text and end_marker in text:
+              updated = re.sub(
+                  rf"{re.escape(start_marker)}.*?{re.escape(end_marker)}",
+                  replacement,
+                  text,
+                  flags=re.DOTALL,
+              )
+          else:
+              insert_after = re.search(r"^# .+?\n", text, flags=re.MULTILINE)
+              if not insert_after:
+                  raise RuntimeError("README.md must start with an H1 heading.")
+              insert_at = insert_after.end()
+              updated = text[:insert_at] + f"\n## 目录\n\n{replacement}\n" + text[insert_at:]
+
+          readme_path.write_text(updated, encoding="utf-8")
+          PY
+
+      - name: Commit README TOC changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "README TOC is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "docs: update README table of contents"
+          git push

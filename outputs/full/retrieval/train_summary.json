@@ -1,0 +1,8 @@
+{
+  "losses": [],
+  "device": "cuda:0",
+  "distributed": true,
+  "world_size": 4,
+  "pretrained": true,
+  "train_adapter": false
+}

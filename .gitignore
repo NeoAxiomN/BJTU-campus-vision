@@ -1,0 +1,11 @@
+.DS_Store
+.cache/
+.venv/
+.uv-cache/
+.uv-python/
+__pycache__/
+*.pyc
+*.egg-info/
+data/raw/
+data/processed/
+outputs/**/*.pt

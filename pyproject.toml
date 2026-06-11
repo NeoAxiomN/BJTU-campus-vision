@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bjtu-campus-vision"
+version = "0.1.0"
+description = "BJTU campus vision retrieval and text detection."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "matplotlib>=3.9",
+    "numpy>=2.1",
+    "pillow>=11.0",
+    "pyyaml>=6.0",
+    "scikit-learn>=1.6",
+    "scipy>=1.15",
+    "timm>=1.0.15",
+    "torch>=2.6",
+    "torchvision>=0.21",
+    "tqdm>=4.67",
+]
+
+[project.optional-dependencies]
+faiss = ["faiss-cpu>=1.10"]
+
+[project.scripts]
+bjtu-campus-vision = "cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["cli", "config"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv]
+package = true

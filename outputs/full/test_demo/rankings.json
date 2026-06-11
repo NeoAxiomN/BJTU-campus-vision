@@ -1,0 +1,128 @@
+{
+  "items": [
+    {
+      "output": "mh_02.png",
+      "query": {
+        "id": "query_mh-71d24365e68e2edfca3a37bef1458f2",
+        "label": "mh",
+        "image_path": "/home/junyi/BJTU-campus-vision/data/raw/BJTU2026/image_retrieval/query/mh-71d24365e68e2edfca3a37bef1458f2.jpg"
+      },
+      "quality": {
+        "top1_match": true,
+        "top5_all_match": true,
+        "top5_hits": 5,
+        "topk_hits": 5,
+        "top1_score": 0.9980321526527405,
+        "top5_mean_score": 0.9883179783821106,
+        "unique_results": 5
+      },
+      "topk": [
+        {
+          "rank": 1,
+          "id": "bjtubase_mh-27hbdk",
+          "label": "mh",
+          "image_path": "/home/junyi/BJTU-campus-vision/data/raw/BJTU2026/image_retrieval/base/BJTU/mh-27hbdk.png",
+          "score": 0.9980321526527405,
+          "match": true,
+          "detected_boxes": [
+            [
+              692.1800537109375,
+              559.7009887695312,
+              926.9232788085938,
+              1018.8724975585938
+            ]
+          ],
+          "detected_scores": [
+            0.9158686995506287
+          ]
+        },
+        {
+          "rank": 2,
+          "id": "bjtubase_mh-tx91",
+          "label": "mh",
+          "image_path": "/home/junyi/BJTU-campus-vision/data/raw/BJTU2026/image_retrieval/base/BJTU/mh-tx91.jpg",
+          "score": 0.9884074926376343,
+          "match": true,
+          "detected_boxes": [
+            [
+              749.587646484375,
+              176.53817749023438,
+              893.2713623046875,
+              483.8681945800781
+            ]
+          ],
+          "detected_scores": [
+            0.9521474838256836
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "bjtubase_mh-hgfg7893c",
+          "label": "mh",
+          "image_path": "/home/junyi/BJTU-campus-vision/data/raw/BJTU2026/image_retrieval/base/BJTU/mh-hgfg7893c.jpg",
+          "score": 0.9855578541755676,
+          "match": true,
+          "detected_boxes": [
+            [
+              514.00732421875,
+              477.2203369140625,
+              884.9180908203125,
+              1208.80078125
+            ]
+          ],
+          "detected_scores": [
+            0.9534443020820618
+          ]
+        },
+        {
+          "rank": 4,
+          "id": "bjtubase_mh-1746580766618",
+          "label": "mh",
+          "image_path": "/home/junyi/BJTU-campus-vision/data/raw/BJTU2026/image_retrieval/base/BJTU/mh-1746580766618.jpg",
+          "score": 0.9852300882339478,
+          "match": true,
+          "detected_boxes": [
+            [
+              84.30320739746094,
+              172.93051147460938,
+              213.25064086914062,
+              443.2961120605469
+            ]
+          ],
+          "detected_scores": [
+            0.9562241435050964
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "bjtubase_mh-vlgrtkrnsb1674",
+          "label": "mh",
+          "image_path": "/home/junyi/BJTU-campus-vision/data/raw/BJTU2026/image_retrieval/base/BJTU/mh-vlgrtkrnsb1674.jpg",
+          "score": 0.9843623042106628,
+          "match": true,
+          "detected_boxes": [
+            [
+              296.80584716796875,
+              261.0352783203125,
+              457.4509582519531,
+              614.7899169921875
+            ]
+          ],
+          "detected_scores": [
+            0.9665111303329468
+          ]
+        }
+      ],
+      "source_rankings": "/home/junyi/BJTU-campus-vision/outputs/full/demo/rankings.json"
+    }
+  ],
+  "selection": {
+    "source": "/home/junyi/BJTU-campus-vision/outputs/full/demo/rankings.json",
+    "examples": [
+      "mh_02.png"
+    ],
+    "display_topk": 5,
+    "score_threshold": 0.35,
+    "purpose": "lightweight recording demo using saved retrieval rankings and live text detection"
+  }
+}

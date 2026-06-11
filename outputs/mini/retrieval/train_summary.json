@@ -1,0 +1,8 @@
+{
+  "losses": [
+    0.007023773156106472
+  ],
+  "device": "cuda:0",
+  "distributed": true,
+  "world_size": 2
+}

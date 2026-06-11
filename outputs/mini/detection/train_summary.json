@@ -1,0 +1,10 @@
+{
+  "losses": [
+    0.7763684988021851
+  ],
+  "device": "cuda:0",
+  "distributed": true,
+  "world_size": 2,
+  "model_type": "fasterrcnn_mobilenet_v3_large_320_fpn",
+  "pretrained": true
+}
